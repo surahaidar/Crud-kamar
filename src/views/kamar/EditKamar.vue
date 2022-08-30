@@ -10,7 +10,7 @@
                         <form @submit.prevent="update">
                             <div class="form-group">
                                 <label for="title" class="font-weight-bold">nama kamar</label>
-                                <input type="text" class="form-control" v-model="kamar.jeniskamar" placeholder="Masukkan Judul Post">
+                                <input type="text" class="form-control" v-model="kamar.jeniskamar" placeholder="Masukkan nama kamar">
                                 <!-- validation -->
                                 <div v-if="validation.jeniskamar" class="mt-2 alert alert-danger">
                                     {{ validation.jeniskamar[0] }}
@@ -18,7 +18,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="content" class="font-weight-bold">fasilitas</label>
-                                <textarea class="form-control" rows="4" v-model="kamar.fasilitaskamar" placeholder="Masukkan Konten Post"></textarea>
+                                <textarea class="form-control" rows="4" v-model="kamar.fasilitaskamar" placeholder="fasilitas kamar"></textarea>
                                 <!-- validation -->
                                 <div v-if="validation.fasilitaskamar" class="mt-2 alert alert-danger">
                                     {{ validation.fasilitaskamar[0] }}
@@ -26,7 +26,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="content" class="font-weight-bold">reservasi</label>
-                                <textarea class="form-control" rows="4" v-model="kamar.reservasi" placeholder="Masukkan Konten Post"></textarea>
+                                <textarea class="form-control" rows="4" v-model="kamar.reservasi" placeholder="Reservasi"></textarea>
                                 <!-- validation -->
                                 <div v-if="validation.reservasi" class="mt-2 alert alert-danger">
                                     {{ validation.reservasi[0] }}
@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="content" class="font-weight-bold">harga</label>
-                                <textarea class="form-control" rows="4" v-model="kamar.harga" placeholder="Masukkan Konten Post"></textarea>
+                                <textarea class="form-control" rows="4" v-model="kamar.harga" placeholder="Harga"></textarea>
                                 <!-- validation -->
                                 <div v-if="validation.harga" class="mt-2 alert alert-danger">
                                     {{ validation.harga[0] }}
@@ -80,7 +80,7 @@ export default {
         onMounted(() => {
 
             //get API from Laravel Backend
-            axios.get(`http://127.0.0.1:8000/api/kamars`)
+            axios.get(`http://127.0.0.1:8000/api/kamars/${route.params.id}`)
             .then(response => {
               
               //assign state posts with response data

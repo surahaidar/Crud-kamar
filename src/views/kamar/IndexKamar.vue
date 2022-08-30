@@ -25,7 +25,7 @@
                                     <td>{{ kamar.kamar }}</td>
                                     <td class="text-center">
                                         <router-link :to="{name: 'kamar.edit', params:{id: kamar.id }}" class="btn btn-sm btn-primary mr-1">EDIT</router-link>
-                                        <button class="btn btn-sm btn-danger ml-1">DELETE</button>
+                                        <button @click.prevent="kamarDelete(kamar.id)" class="btn btn-sm btn-danger ml-1">DELETE</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -64,10 +64,27 @@ export default {
             })
 
         })
+        //method delete
+        function kamarDelete(id) {
+
+                    //delete data post by ID
+                    axios.delete(`http://localhost:8000/api/kamars/${id}`)
+                    .then(() => {
+
+                        //splice posts 
+                        kamars.value.splice(kamars.value.indexOf(id), 1);
+                    
+                     }).catch(error => {
+                         console.log(error.response.data)
+                     })
+                 
+        }
+
 
         //return
         return {
-        kamars
+        kamars,
+        kamarDelete
         }
 
     }
